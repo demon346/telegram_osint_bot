@@ -11,12 +11,12 @@ NUMVERIFY_KEY = os.getenv("NUMVERIFY_KEY") or "PUT_YOUR_NUMVERIFY_KEY_HERE"
 
 bot = telebot.TeleBot(BOT_TOKEN, parse_mode=None)
 
-    def is_ip(s):
+def is_ip(s):
         parts = s.split('.')
         return len(parts) == 4 and all(p.isdigit() and 0<=int(p)<=255 for p in parts)
 
     @bot.message_handler(commands=['start', 'help'])
-    def send_welcome(message):
+def send_welcome(message):
         text = (
             """👋 नमस्ते! मैं OSINT हेल्पर बोट हूँ.
 
@@ -33,7 +33,7 @@ bot = telebot.TeleBot(BOT_TOKEN, parse_mode=None)
         bot.reply_to(message, text)
 
     @bot.message_handler(func=lambda m: True)
-    def handle_all(message):
+def handle_all(message):
         text = message.text.strip()
         # Phone number heuristic: starts with + or digits and length > 6
         if text.startswith('+') or (text.isdigit() and len(text) > 6):
