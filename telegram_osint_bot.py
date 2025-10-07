@@ -15,9 +15,9 @@ def is_ip(s):
         parts = s.split('.')
         return len(parts) == 4 and all(p.isdigit() and 0<=int(p)<=255 for p in parts)
 
-    @bot.message_handler(commands=['start', 'help'])
+@bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
-        text = (
+  text = (
             """👋 नमस्ते! मैं OSINT हेल्पर बोट हूँ.
 
 """
@@ -32,9 +32,9 @@ def send_welcome(message):
         )
         bot.reply_to(message, text)
 
-    @bot.message_handler(func=lambda m: True)
+@bot.message_handler(func=lambda m: True)
 def handle_all(message):
-        text = message.text.strip()
+  text = message.text.strip()
         # Phone number heuristic: starts with + or digits and length > 6
         if text.startswith('+') or (text.isdigit() and len(text) > 6):
             # Use NumVerify (apilayer) for phone
