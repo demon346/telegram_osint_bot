@@ -29,8 +29,8 @@ def send_welcome(message):
 
 """
             """सुरक्षा: अपनी API keys कभी पब्लिक रिपॉज़िटरी पर न डालें."""
-        )
-        bot.reply_to(message, text)
+  )
+  bot.reply_to(message, text)
 
 @bot.message_handler(func=lambda m: True)
 def handle_all(message):
