@@ -18,17 +18,17 @@
     @bot.message_handler(commands=['start', 'help'])
     def send_welcome(message):
         text = (
-            "👋 नमस्ते! मैं OSINT हेल्पर बोट हूँ.
+            """👋 नमस्ते! मैं OSINT हेल्पर बोट हूँ.
 
-"
-            "इस्तेमाल के निर्देश:
-"
-            "• फोन नंबर भेजें (उदाहरण: +919876543210) → NumVerify से lookup
-"
-            "• IP भेजें (उदाहरण: 8.8.8.8) → ip-api.com से lookup (no API key)
+"""
+            """इस्तेमाल के निर्देश:
+"""
+            """• फोन नंबर भेजें (उदाहरण: +919876543210) → NumVerify से lookup
+"""
+            """• IP भेजें (उदाहरण: 8.8.8.8) → ip-api.com से lookup (no API key)
 
-"
-            "सुरक्षा: अपनी API keys कभी पब्लिक रिपॉज़िटरी पर न डालें."
+"""
+            """सुरक्षा: अपनी API keys कभी पब्लिक रिपॉज़िटरी पर न डालें."""
         )
         bot.reply_to(message, text)
 
@@ -55,7 +55,7 @@
                 out.append(f"Line type: {j.get('line_type') or 'N/A'}")
                 bot.reply_to(message, '\n'.join(out))
             except Exception as e:
-                bot.reply_to(message, f"❌ NumVerify कॉल में error: {e}")
+                bot.reply_to(message, f"""❌ NumVerify कॉल में error: {e}")
         elif is_ip(text):
             ip = text
             url = f"http://ip-api.com/json/{ip}?fields=status,message,country,regionName,city,zip,isp,org,as,query,lat,lon"
@@ -65,24 +65,24 @@
                 j = r.json()
                 if j.get("status") == "success":
                     out = [
-                        f"🌐 IP lookup for {ip}",
-                        f"Location: {j.get('city')}, {j.get('regionName')}, {j.get('country')}",
-                        f"ISP: {j.get('isp') or 'N/A'}",
-                        f"Org: {j.get('org') or 'N/A'}",
-                        f"AS: {j.get('as') or 'N/A'}",
-                        f"Lat/Lon: {j.get('lat')},{j.get('lon')}"
+                        f"""🌐 IP lookup for {ip}""",
+                        f"""Location: {j.get('city')}, {j.get('regionName')}, {j.get('country')}",
+                        f"""ISP: {j.get('isp') or 'N/A'}",
+                        f"""Org: {j.get('org') or 'N/A'}",
+                        f"""AS: {j.get('as') or 'N/A'}",
+                        f"""Lat/Lon: {j.get('lat')},{j.get('lon')}"
                     ]
                 else:
-                    out = [f"❌ IP lookup failed: {j.get('message','unknown')}"]
+                    out = [f"""❌ IP lookup failed: {j.get('message','unknown')}"""]
                 bot.reply_to(message, '\n'.join(out))
             except Exception as e:
-                bot.reply_to(message, f"❌ IP-API कॉल में error: {e}")
+                bot.reply_to(message, f"""❌ IP-API कॉल में error: {e}""")
         else:
-            bot.reply_to(message, "कृपया एक फोन नंबर (+countrycode...) या एक IPv4 एड्रेस भेजें।")
+            bot.reply_to(message, "कृपया एक फोन नंबर (+countrycode...) या एक IPv4 एड्रेस भेजें।""")
 
     if __name__ == '__main__':
-        print("Bot चल रहा है... (Ctrl+C to stop)")
+        print("Bot चल रहा है... (Ctrl+C to stop)""")
         try:
             bot.polling(none_stop=True)
         except KeyboardInterrupt:
-            print("Stopping...")
+            print("Stopping...""")
