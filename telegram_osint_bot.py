@@ -9,7 +9,7 @@ load_dotenv()
 BOT_TOKEN = os.getenv("TG_BOT_TOKEN") or "PUT_YOUR_TELEGRAM_BOT_TOKEN_HERE"
 NUMVERIFY_KEY = os.getenv("NUMVERIFY_KEY") or "PUT_YOUR_NUMVERIFY_KEY_HERE"
 
-    bot = telebot.TeleBot(BOT_TOKEN, parse_mode=None)
+bot = telebot.TeleBot(BOT_TOKEN, parse_mode=None)
 
     def is_ip(s):
         parts = s.split('.')
